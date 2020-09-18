@@ -7,6 +7,7 @@ from aiohttp import web
 import uvloop
 
 from demo.app import create_app
+from demo.settings import loader_config
 
 # Быстрее работает async
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
@@ -15,6 +16,7 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 parser = argparse.ArgumentParser(description='Demo')
 parser.add_argument('--host', help='Host')
 parser.add_argument('--port', help='Port')
+parser.add_argument('-c', help='Config', type=argparse.FileType('r'), default=None)
 parser.add_argument('--reload',
                     help='AutoReload',
                     action='store_true')
@@ -23,7 +25,7 @@ parser.add_argument('--reload',
 args = parser.parse_args()
 
 # Вызов конструктора создания приложения
-app = create_app()
+app = create_app(config=loader_config())
 
 # Авторелоад
 if args.reload:

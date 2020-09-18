@@ -9,4 +9,6 @@ async def index(request):
     :param request:
     :return:
     """
-    return {}
+
+    site_name = request.app['config'].get('site_name')
+    return {'site_name': site_name}

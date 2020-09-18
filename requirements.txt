@@ -4,3 +4,4 @@ Jinja2~=2.11.2
 asyncio == 3.4.3
 uvloop == 0.14.0
 aioreloader == 0.3.0
+PyYAML
